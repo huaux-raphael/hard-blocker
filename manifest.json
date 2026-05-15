@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Hard Blocker",
-  "version": "1",
-  "description": "Block websites at the network level, clear history, ad blocking, and porn blocking.",
+  "version": "1.0.1",
+  "description": "Block websites at the network level, clear history, ad blocking, cosmetic filtering, and porn blocking.",
   "permissions": [
     "storage",
     "declarativeNetRequest",
@@ -28,9 +28,16 @@
     "48": "icons/48.png",
     "128": "icons/128.png"
   },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
   "web_accessible_resources": [
     {
-      "resources": ["pornlist.json"],
+      "resources": ["pornlist.json", "cosmetic_filters.json"],
       "matches": ["<all_urls>"]
     }
   ]
