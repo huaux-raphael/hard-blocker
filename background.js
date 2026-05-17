@@ -35,7 +35,6 @@ const AD_DOMAINS = [
     "static.doubleclick.net",
     "m.doubleclick.net",
     "mediavisor.doubleclick.net",
-    "ads.youtube.com",
 
     // ── Google Analytics ──────────────────────────────────────────────────────
     "google-analytics.com",
