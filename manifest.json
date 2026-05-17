@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Hard Blocker",
-  "version": "1.0.2",
+  "version": "1.0.1",
   "description": "Block websites at the network level, clear history, ad blocking, cosmetic filtering, and porn blocking.",
   "permissions": [
     "storage",
@@ -32,14 +32,7 @@
     {
       "matches": ["<all_urls>"],
       "js": ["content.js"],
-      "run_at": "document_start",
-      "world": "ISOLATED"
-    },
-    {
-      "matches": ["*://*.youtube.com/*"],
-      "js": ["youtube-scriptlet.js"],
-      "run_at": "document_start",
-      "world": "MAIN"
+      "run_at": "document_start"
     }
   ],
   "web_accessible_resources": [
