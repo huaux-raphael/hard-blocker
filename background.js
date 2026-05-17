@@ -20,6 +20,7 @@ function loadPornList(callback) {
             if (callback) callback();
         });
 }
+
 const AD_DOMAINS = [
     // ── Google Ads & Syndication ──────────────────────────────────────────────
     "pagead2.googlesyndication.com",
@@ -34,7 +35,8 @@ const AD_DOMAINS = [
     "static.doubleclick.net",
     "m.doubleclick.net",
     "mediavisor.doubleclick.net",
-    
+    "ads.youtube.com",
+
     // ── Google Analytics ──────────────────────────────────────────────────────
     "google-analytics.com",
     "ssl.google-analytics.com",
@@ -143,12 +145,15 @@ const AD_DOMAINS = [
     "pixel.facebook.com",
     "connect.facebook.net",
     "graph.facebook.com",
+    "analytics.facebook.com",
+    "ads.facebook.com",
 
     // ── Twitter / X Ads ───────────────────────────────────────────────────────
     "static.ads-twitter.com",
     "ads-api.twitter.com",
     "ads.twitter.com",
     "analytics.twitter.com",
+    "advertising.twitter.com",
 
     // ── LinkedIn Ads ──────────────────────────────────────────────────────────
     "ads.linkedin.com",
@@ -161,12 +166,16 @@ const AD_DOMAINS = [
     "trk.pinterest.com",
     "ads.pinterest.com",
     "ct.pinterest.com",
+    "ads-dev.pinterest.com",
+    "analytics.pinterest.com",
 
     // ── Reddit Ads ────────────────────────────────────────────────────────────
     "events.reddit.com",
     "events.redditmedia.com",
     "alb.reddit.com",
     "pixel.reddit.com",
+    "ads.reddit.com",
+    "d.reddit.com",
 
     // ── TikTok / ByteDance Ads ────────────────────────────────────────────────
     "analytics.tiktok.com",
@@ -188,6 +197,10 @@ const AD_DOMAINS = [
     "an.yandex.ru",
     "extmaps-api.yandex.net",
     "offerwall.yandex.net",
+    "appmetrica.yandex.com",
+    "yandexadexchange.net",
+    "analytics.mobile.yandex.net",
+    "adsdk.yandex.ru",
 
     // ── Unity Ads ─────────────────────────────────────────────────────────────
     "auction.unityads.unity3d.com",
@@ -209,6 +222,10 @@ const AD_DOMAINS = [
     "sdkconfig.ad.intl.xiaomi.com",
     "data.mistat.xiaomi.com",
     "tracking.rus.miui.com",
+    "data.mistat.intl.xiaomi.com",
+    "tracking.miui.com",
+    "tracking.intl.miui.com",
+    "tracking.india.miui.com",
 
     // ── Oppo ──────────────────────────────────────────────────────────────────
     "data.ads.oppomobile.com",
@@ -223,6 +240,9 @@ const AD_DOMAINS = [
     "logservice.hicloud.com",
     "logbak.hicloud.com",
     "logservice1.hicloud.com",
+    "metrics1.data.hicloud.com",
+    "metrics5.data.hicloud.com",
+    "metrics-dra.dt.hicloud.com",
 
     // ── OnePlus ───────────────────────────────────────────────────────────────
     "open.oneplus.net",
@@ -234,6 +254,7 @@ const AD_DOMAINS = [
     "nmetrics.samsung.com",
     "samsungads.com",
     "analytics-api.samsunghealthcn.com",
+    "business.samsungusa.com",
 
     // ── Apple Ads & Metrics ───────────────────────────────────────────────────
     "metrics.mzstatic.com",
@@ -243,6 +264,8 @@ const AD_DOMAINS = [
     "weather-analytics-events.apple.com",
     "books-analytics-events.apple.com",
     "iadsdk.apple.com",
+    "securemetrics.apple.com",
+    "supportmetrics.apple.com",
 
     // ── Microsoft Ads / Clarity ───────────────────────────────────────────────
     "bat.bing.com",
@@ -314,6 +337,293 @@ const AD_DOMAINS = [
     // ── Conversant / Epsilon ──────────────────────────────────────────────────
     "media.conversantmedia.com",
     "conversantmedia.com",
+
+    // ── Mobile Ads ───────────────────────────────────────────────────────────
+    // InMobi
+    "inmobi.com",
+    "api.inmobi.com",
+    "sdk.inmobi.com",
+    "ads.inmobi.com",
+    "cf.hb.adriver.ru",
+    // MoPub (Twitter/X mobile)
+    "ads.mopub.com",
+    "mopub.com",
+    // IronSource / Unity LevelPlay
+    "ironsource.com",
+    "outcome-ssp.supersonicads.com",
+    "admob.googleapis.com",
+    // AdMob / Google Mobile
+    "admob.com",
+    "googleadmob.com",
+    "mobile-gtm.googleapis.com",
+    // Verizon / Oath mobile
+    "ads.verizonmedia.com",
+    "one.yahoo.com",
+    // Chartboost
+    "live.chartboost.com",
+    "chartboost.com",
+    // AppLovin
+    "applovin.com",
+    "rt.applovin.com",
+    "d2.applovin.com",
+    // Digital Turbine / Fyber
+    "fyber.com",
+    "inner-active.com",
+    "inneractive.com",
+    "digitalturbine.com",
+    // Vungle / Liftoff
+    "vungle.com",
+    "api.vungle.com",
+    "ads.vungle.com",
+    // Moloco
+    "moloco.com",
+    "ad.moloco.com",
+    // Smaato
+    "prebid.smaato.net",
+    "smaato.net",
+    // Mintegral / Mobvista
+    "mintegral.com",
+    "api.mintegral.com",
+    "hb.mintegral.com",
+    // Yahoo Flurry analytics/ads
+    "data.flurry.com",
+    "api.flurry.com",
+    "flurry.com",
+
+    // ── Analytics (missing) ───────────────────────────────────────────────────
+    // Amplitude
+    "api.amplitude.com",
+    "api2.amplitude.com",
+    "amplitude.com",
+    // Heap
+    "heapanalytics.com",
+    "cdn.heapanalytics.com",
+    // FullStory
+    "fullstory.com",
+    "rs.fullstory.com",
+    "edge.fullstory.com",
+    // LogRocket
+    "logrocket.com",
+    "r.logrocket.io",
+    // Pendo
+    "app.pendo.io",
+    "cdn.pendo.io",
+    "data.pendo.io",
+    // Matomo / Piwik (self-hosted but common CDN endpoints)
+    "cdn.matomo.cloud",
+    // Klaviyo
+    "static.klaviyo.com",
+    "a.klaviyo.com",
+    // Braze
+    "sdk.iad-01.braze.com",
+    "sdk.fra-01.braze.com",
+    "sdk.iad-02.braze.com",
+    "sdk.iad-03.braze.com",
+    "sdk.iad-05.braze.com",
+    "braze.com",
+    // Intercom tracking
+    "api-iam.intercom.io",
+    "widget.intercom.io",
+    // Woopra
+    "www.woopra.com",
+    "static.woopra.com",
+
+    // ── Audio Ads (missing) ───────────────────────────────────────────────────
+    // Spotify Ad Studio
+    "adeventtracker.spotify.com",
+    "audio-ak-spotify-com.akamaized.net",
+    "heads-fa.spotify.com",
+    // AdsWizz / Pandora
+    "adswizz.com",
+    "deliver.adswizz.com",
+    "inventory.adswizz.com",
+    "impressions.adswizz.com",
+    "cdn.adswizz.com",
+    // Triton Digital (streaming audio)
+    "tritondigital.com",
+    "playerservices.streamtheworld.com",
+    "cmod.tritondigital.com",
+    // iHeartMedia / Omny
+    "omny.fm",
+    "traffic.omny.fm",
+    // SoundCloud ads
+    "promote.soundcloud.com",
+
+    // ── Cross-Site Tracking (missing) ─────────────────────────────────────────
+    // LiveRamp / IdentityLink
+    "liveramp.com",
+    "idsync.rlcdn.com",
+    "rlcdn.com",
+    // ID5 identity
+    "id5-sync.com",
+    // Neustar / TransUnion
+    "neustar.biz",
+    "tag.crsspxl.com",
+    // TradeDesk UID2
+    "global.uidapi.com",
+    "uid2.prod.uidapi.com",
+    // Lotame
+    "ad.crwdcntrl.net",
+    "crwdcntrl.net",
+    "bcp.crwdcntrl.net",
+    // Zeotap
+    "zeotap.com",
+    "spl.zeotap.com",
+    // Permutive
+    "permutive.com",
+    "edge.permutive.app",
+    // OneTrust (tracking consent but also ID sync)
+    "cdn.cookielaw.org",
+    // Publink / Epsilon
+    "publink.com",
+    "turn.com",
+    "tns.turn.com",
+
+    // ── Programmatic (missing) ────────────────────────────────────────────────
+    // The Trade Desk
+    "thetradedesk.com",
+    "insight.adsrvr.org",
+    "js.adsrvr.org",
+    "match.adsrvr.org",
+    "adsrvr.org",
+    // DV360 / Display & Video 360
+    "bid.g.doubleclick.net",
+    "cm.g.doubleclick.net",
+    // Xandr/Microsoft Invest
+    "microsoft.com/ads",
+    "secure.adnxs.com",
+    // Magnite (ex-SpotX)
+    "prebid.magnite.com",
+    "streams.magnite.com",
+    "magnite.com",
+    // Freewheel (video programmatic)
+    "freewheel.tv",
+    "mssl.fwmrm.net",
+    "fwmrm.net",
+    // SmartAdServer / Equativ
+    "smartadserver.com",
+    "ced.sascdn.com",
+    "sascdn.com",
+    // Sovrn / VigLink
+    "sovrn.com",
+    "ap.lijit.com",
+    "lijit.com",
+    // Undertone / Perion
+    "undertone.com",
+    "cdn.undertone.com",
+    // ── Kargo ─────────────────────────────────────────────────────────────────
+    "krgo.com",
+    "storage.krgo.com",
+
+    // ── Spotify Ads (audio) ───────────────────────────────────────────────────
+    // Ad delivery and tracking endpoints
+    "audio-ads.spotify.com",
+    "audio-fa.spotify.com",
+    "audio-ec.spotify.com",
+    "audio2.spotify.com",
+    "www.audio2.spotify.com",
+    "heads-fa.spotify.com",
+    "heads-ec.spotify.com",
+    "ads-fa.spotify.com",
+    "adeventtracker.spotify.com",
+    "analytics.spotify.com",
+    "log.spotify.com",
+    "crashdump.spotify.com",
+    // Spotify audio ad CDN (serves actual mp3 ad streams)
+    "audio-fa.scdn.co",
+    "audio-ec.scdn.co",
+    "audio-ak-spotify-com.akamaized.net",
+    // Third-party networks Spotify routes ads through
+    "media-match.com",
+    "adclick.g.doubleclick.net",
+    "pubads.g.doubleclick.net",
+    "securepubads.g.doubleclick.net",
+    "googleads.g.doubleclick.net",
+    "pagead46.l.doubleclick.net",
+    "ads.g.doubleclick.net",
+    "s0.2mdn.net",
+    "tpc.googlesyndication.com",
+    "crashlytics.com",
+    // Spotify Ad Studio
+    "ads.spotify.com",
+    "adstudio.spotify.com",
+
+    // ── FingerprintJS (browser fingerprinting / tracking) ─────────────────────
+    "fpjscdn.net",
+    "fp.jsdelivr.net",
+    "fpnpmcdn.net",
+    "api.fpjs.io",
+    "api2.fpjs.io",
+    "api3.fpjs.io",
+    "fingerprint.com",
+    "cdn.fingerprint.com",
+    "metrics.fingerprint.com",
+
+    // ── Twitter/X Widgets & tracking ─────────────────────────────────────────
+    "platform.twitter.com",
+    "syndication.twitter.com",
+    "widgets.twitter.com",
+    "cdn.syndication.twimg.com",
+    "t.co",
+
+    // ── Pinterest tracking & widgets ──────────────────────────────────────────
+    "widgets.pinterest.com",
+    "assets.pinterest.com",
+    "s.pinimg.com",
+    "trk.pinterest.com",
+    "ct.pinterest.com",
+    "log.pinterest.com",
+
+    // ── CoinHive & crypto miners ───────────────────────────────────────────────
+    "coinhive.com",
+    "coin-hive.com",
+    "minero.cc",
+    "jsecoin.com",
+    "crypto-loot.com",
+    "cryptoloot.pro",
+    "coinimp.com",
+    "webminepool.com",
+    "webmine.pro",
+    "webmine.cz",
+    "moneroocean.stream",
+    "authedmine.com",
+    "miner.pr0gramm.com",
+    "minecrunch.co",
+    "minemytraffic.com",
+    "2mdn.net",
+    "ppoi.org",
+
+    // ── MGID (programmatic native) ────────────────────────────────────────────
+    "mgid.com",
+    "mg.mgid.com",
+    "cm.mgid.com",
+    "jsc.mgid.com",
+    "servicer.mgid.com",
+    "a.mgid.com",
+    "cdn.mgid.com",
+
+    // ── Mintegral / Mobvista (additional endpoints) ───────────────────────────
+    "cdn-adn.rayjump.com",
+    "cdn-adn-ssl.rayjump.com",
+    "rayjump.com",
+    "mads.mintegral.com",
+    "ss.mintegral.com",
+    "net.mintegral.com",
+    "sg-api.mintegral.com",
+    "eu-api.mintegral.com",
+    "us-api.mintegral.com",
+    "adn.mintegral.com",
+
+    // ── Google Analytics 4 (GA4) ──────────────────────────────────────────────
+    "region1.google-analytics.com",
+    "region1.analytics.google.com",
+    "www.google-analytics.com",
+
+    // ── Google Tag Manager (GTM) ──────────────────────────────────────────────
+    "googletagmanager.com",
+    "www.googletagmanager.com",
+    "googletagservices.com",
+    "www.googletagservices.com",
 ];
 
 function buildAndApplyRules() {
