@@ -86,18 +86,12 @@ function removeCosmeticCSS() {
     if (cosmeticStyleEl) { cosmeticStyleEl.remove(); cosmeticStyleEl = null; }
 }
 
-function applyCosmeticFilters(selectors) {
-    const css = buildCosmeticCSS(selectors);
-    injectCosmeticCSS(css);
-}
-
 let cosmeticObserver = null;
 
 function startCosmeticObserver(selectors) {
     if (cosmeticObserver) return;
     const validSelectors = selectors.filter(s => typeof s === "string" && !s.startsWith("##") && s.trim());
     if (!validSelectors.length) return;
-
     const combined = validSelectors.join(",");
 
     cosmeticObserver = new MutationObserver(mutations => {
@@ -106,8 +100,9 @@ function startCosmeticObserver(selectors) {
                 if (node.nodeType !== 1) continue;
                 try {
                     if (node.matches(combined)) node.style.setProperty("display", "none", "important");
-                    const kids = node.querySelectorAll(combined);
-                    kids.forEach(el => el.style.setProperty("display", "none", "important"));
+                    node.querySelectorAll(combined).forEach(el =>
+                        el.style.setProperty("display", "none", "important")
+                    );
                 } catch {}
             }
         }
@@ -126,12 +121,11 @@ function loadAndApplyCosmetic(adblockEnabled) {
         stopCosmeticObserver();
         return;
     }
-
     const url = chrome.runtime.getURL("cosmetic_filters.json");
     fetch(url)
         .then(r => r.json())
         .then(selectors => {
-            applyCosmeticFilters(selectors);
+            injectCosmeticCSS(buildCosmeticCSS(selectors));
             startCosmeticObserver(selectors);
         })
         .catch(err => console.error("Hard Blocker: failed to load cosmetic_filters.json", err));
