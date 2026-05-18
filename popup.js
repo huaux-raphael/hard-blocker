@@ -8,6 +8,7 @@ const pornToggle = document.getElementById("pornToggle");
 const exportBtn = document.getElementById("exportBtn");
 const importBtn = document.getElementById("importBtn");
 const importFile = document.getElementById("importFile");
+const removeAllBtn = document.getElementById("removeAllBtn");
 
 const P3_KEYWORDS = [
     "porn","xxx","sex","nude","nudes","adult","xxxvideo","pornhub","xvideos","hentai","camgirl","camsex"
@@ -53,23 +54,26 @@ function refreshUI() {
         listEl.innerHTML = "";
         const list = res.blocked || [];
         if (!list.length) {
-            const li = document.createElement("li");
-            li.textContent = "No sites blocked yet.";
-            li.style.color = "#666";
-            listEl.appendChild(li);
+            const div = document.createElement("div");
+            div.className = "site-item";
+            div.innerHTML = `<span style="color:#999">No sites blocked yet.</span>`;
+            listEl.appendChild(div);
         } else {
             for (const d of list) {
-                const li = document.createElement("li");
-                li.innerHTML = `<span style="word-break:break-all">${d}</span>`;
+                const div = document.createElement("div");
+                div.className = "site-item";
+                div.innerHTML = `<span>${d}</span>`;
                 const removeBtn = document.createElement("button");
                 removeBtn.textContent = "Remove";
+                removeBtn.className = "btn-remove";
                 removeBtn.dataset.domain = d;
                 removeBtn.addEventListener("click", onRemoveDomain);
-                li.appendChild(removeBtn);
-                listEl.appendChild(li);
+                div.appendChild(removeBtn);
+                listEl.appendChild(div);
             }
         }
 
+        // Set toggles without triggering transition (no-transition class already active on first load)
         clearHistoryToggle.checked = !!res.clearHistory;
         adblockToggle.checked = !!res.adblock;
         pornToggle.checked = !!res.pornEnabled;
@@ -118,6 +122,12 @@ function onRemoveDomain(e) {
         chrome.storage.local.set({ blocked: list }, () => refreshUI());
     });
 }
+
+// Block current site toggle persistence
+const blockCurrentToggle = document.getElementById("blockCurrentToggle");
+blockCurrentToggle.addEventListener("change", function() {
+    chrome.storage.local.set({ blockCurrentEnabled: this.checked });
+});
 
 addBtn.addEventListener("click", () => {
     const raw = siteInput.value.trim();
@@ -183,6 +193,12 @@ pornToggle.addEventListener("change", e => {
     });
 });
 
+removeAllBtn.addEventListener("click", () => {
+    if (confirm("Remove all blocked sites?")) {
+        chrome.storage.local.set({ blocked: [] }, () => refreshUI());
+    }
+});
+
 exportBtn.addEventListener("click", async () => {
     const data = await new Promise(res =>
         chrome.storage.local.get({ blocked: [], adblock: false, clearHistory: false, pornEnabled: false }, res)
@@ -220,5 +236,25 @@ importFile.addEventListener("change", e => {
     };
     reader.readAsText(f);
 });
+
+// ── Initialise: disable transitions, restore all toggle states, then re-enable ──
+document.body.classList.add("no-transition");
+
+chrome.storage.local.get(
+    { blocked: [], clearHistory: false, adblock: false, pornEnabled: false, blockCurrentEnabled: true },
+    res => {
+        clearHistoryToggle.checked  = !!res.clearHistory;
+        adblockToggle.checked       = !!res.adblock;
+        pornToggle.checked          = !!res.pornEnabled;
+        blockCurrentToggle.checked  = res.blockCurrentEnabled !== false; // default true
+
+        // Re-enable transitions after browser has painted the restored state
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                document.body.classList.remove("no-transition");
+            });
+        });
+    }
+);
 
 loadPornList(() => refreshUI());

@@ -4,54 +4,385 @@
   <meta charset="utf-8">
   <title>Hard Blocker</title>
   <style>
-    body { font-family: system-ui, Arial; width: 420px; padding: 12px; }
-    input[type="text"] { width: 240px; padding: 6px; }
-    button { padding: 6px 10px; margin-left: 6px; cursor:pointer; }
-    .row { display:flex; align-items:center; gap:8px; margin-bottom:8px; }
-    .toggle { display:flex; justify-content:space-between; align-items:center; margin:8px 0; }
-    ul { max-height:200px; overflow:auto; padding-left:12px; }
-    li { margin:6px 0; display:flex; justify-content:space-between; gap:8px; align-items:center; }
-    .small { font-size:12px; color:#666; margin-top:8px; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body.no-transition * {
+      transition: none !important;
+    }
+
+    body {
+      font-family: -apple-system, 'SF Pro Display', 'Helvetica Neue', sans-serif;
+      width: 440px;
+      background: #ffffff;
+      padding: 16px;
+      color: #1a1a1a;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 15px;
+    }
+    .header-icon {
+      width: 56px;
+      height: 56px;
+      background: #e6e6e61f;
+      border-radius: 14px;
+      flex-shrink: 0;
+    }
+    .header-text h1 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1a1a1a;
+      line-height: 1.2;
+    }
+    .header-text p {
+      font-size: 13px;
+      color: #8B8B8B;
+      margin-top: 2px;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #959595;
+      margin: 0 3px 12px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #1a1a1a;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .input-row input {
+      flex: 1;
+      padding: 10px 12px;
+      border: 1.5px solid #959595;
+      border-radius: 10px;
+      font-size: 12px;
+      color: #8B8B8B;
+      outline: none;
+      background: #ffffff;
+    }
+    .input-row input:focus {
+      border-color: #3B82F6;
+      color: #1a1a1a;
+    }
+    .btn-add {
+      padding: 10px 17px;
+      background: #EEEEEE;
+      color: #1a1a1a;
+      border: 1.5px solid #959595;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .btn-add:hover { background: #dbdbdb; }
+
+    .block-current-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    .btn-block-current {
+      flex: 1;
+      padding: 11px;
+      background: #EEEEEE;
+      border: 1.5px solid #959595;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      color: #1a1a1a;
+    }
+    .btn-block-current:hover { background: #dbdbdb; }
+
+    .toggle-wrap {
+      background: #EEEEEE;
+      border-radius: 10px;
+      border: 1.5px solid #959595;
+      padding: 5px;
+      display: flex;
+      align-items: center;
+      width: 70px;
+      height: 42px;
+      flex-shrink: 0;
+      cursor: pointer;
+      position: relative;
+    }
+    .toggle-wrap input[type="checkbox"] {
+      display: none;
+    }
+    .toggle-knob {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      border: 1.5px solid #959595;
+      background: #f87171;
+      transition: background 0.2s, transform 0.2s;
+      position: absolute;
+      left: 6px;
+      top: 6px;
+    }
+    .toggle-wrap input:checked + .toggle-knob {
+      background: #99D87A;
+      transform: translateX(27px);
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .feature-card {
+      border: 1.5px solid #959595;
+      border-radius: 12px;
+      padding: 12px 10px;
+      display: flex;
+      flex-direction: column;
+    }
+    .feature-card h3 {
+      font-size: 14.7px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: #1a1a1a;
+    }
+    .feature-card p {
+      font-size: 12px;
+      color: #8B8B8B;
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+    .feature-card p.mlmt {
+      font-size: 11px;
+      color: #8B8B8B;
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+    .card-toggle-wrap {
+      background: #EEEEEE;
+      border-radius: 8px;
+      border: 1.5px solid #959595;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      width: 76px;
+      height: 42px;
+      cursor: pointer;
+      position: relative;
+      margin-top: auto;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .card-toggle-wrap input[type="checkbox"] {
+      display: none;
+    }
+    .card-toggle-knob {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      border: 1.5px solid #959595;
+      background: #f87171;
+      transition: background 0.2s, transform 0.2s;
+      position: absolute;
+      left: 3px;
+      top: 2px;
+    }
+    .card-toggle-wrap input:checked + .card-toggle-knob {
+      background: #99D87A;
+      transform: translateX(32px);
+    }
+
+    .import-export-card {
+      border: 1.5px solid #959595;
+      border-radius: 12px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .import-export-text h3 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+    .import-export-text p {
+      font-size: 11px;
+      color: #8B8B8B;
+      margin-top: 2px;
+      line-height: 1.4;
+    }
+    .import-export-btns {
+      display: flex;
+      gap: 8px;
+      margin-left: auto;
+      flex-shrink: 0;
+    }
+    .btn-io {
+      padding: 10px 25px;
+      border: 1.5px solid #959595;
+      border-radius: 10px;
+      background: #EEEEEE;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      color: #1a1a1a;
+    }
+    .btn-io:hover { background: #dbdbdb; }
+
+    .stats-line {
+      font-size: 12px;
+      color: #959595;
+      margin-bottom: 10px;
+      margin-left: 3px;
+    }
+
+    .list-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .list-header span {
+      font-size: 16px;
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+    .btn-remove-all {
+      padding: 6px 12px;
+      border: 1.5px solid #fca5a5;
+      border-radius: 8px;
+      background: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      color: #ef4444;
+      cursor: pointer;
+    }
+    .btn-remove-all:hover { background: #ffdbdb; }
+
+    .site-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 180px;
+      overflow-y: auto;
+    }
+    .site-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1.5px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 11px 14px;
+    }
+    .site-item span {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+    .btn-remove {
+      padding: 5px 12px;
+      border: 1.5px solid #fca5a5;
+      border-radius: 8px;
+      background: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      color: #ef4444;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .btn-remove:hover { background: #ffdbdb; }
+
+    #importFile { display: none; }
   </style>
 </head>
 <body>
-  <h2>Hard Blocker</h2>
 
-  <div class="row">
-    <input id="siteInput" placeholder="example.com or https://example.com/path" type="text" />
-    <button id="addBtn">Add</button>
+  <div class="header">
+    <img src="icons/16.png" class="header-icon" alt="Hard Blocker icon">
+    <div class="header-text">
+      <h1>Hard Blocker</h1>
+      <p>Ad, Porn, Site blocker &amp; History Cleaner</p>
+    </div>
   </div>
 
-  <div class="row">
-    <button id="blockCurrent">Block current site</button>
-    <button id="exportBtn">Export list</button>
-    <button id="importBtn">Import</button>
-    <input id="importFile" type="file" accept=".json" style="display:none" />
+  <hr>
+
+  <div class="section-title">Site Blocker</div>
+
+  <div class="input-row">
+    <input id="siteInput" type="text" placeholder="Example.com or https://examle.com/path" />
+    <button id="addBtn" class="btn-add">Add</button>
   </div>
 
-  <h3>Options</h3>
-
-  <div class="toggle">
-    <span>Enable History Cleaner</span>
-    <input type="checkbox" id="clearHistoryToggle">
+  <div class="block-current-row">
+    <button id="blockCurrent" class="btn-block-current">Block Current Site</button>
+    <label class="toggle-wrap" for="blockCurrentToggle">
+      <input type="checkbox" id="blockCurrentToggle">
+      <span class="toggle-knob"></span>
+    </label>
   </div>
 
-  <div class="toggle">
-    <span>Enable Ad Blocker</span>
-    <input type="checkbox" id="adblockToggle">
+  <hr>
+
+  <div class="cards-grid">
+    <div class="feature-card">
+      <h3>Porn Blocker</h3>
+      <p>Blocks adult websites</p>
+      <label class="card-toggle-wrap" for="pornToggle">
+        <input type="checkbox" id="pornToggle">
+        <span class="card-toggle-knob"></span>
+      </label>
+    </div>
+    <div class="feature-card">
+      <h3>Ad Blocker</h3>
+      <p>Blocks ad(s)</p>
+      <label class="card-toggle-wrap" for="adblockToggle">
+        <input type="checkbox" id="adblockToggle">
+        <span class="card-toggle-knob"></span>
+      </label>
+    </div>
+    <div class="feature-card">
+      <h3>History Cleaner</h3>
+      <p class="mlmt">Deletes porn searches from history</p>
+      <label class="card-toggle-wrap" for="clearHistoryToggle">
+        <input type="checkbox" id="clearHistoryToggle">
+        <span class="card-toggle-knob"></span>
+      </label>
+    </div>
   </div>
 
-  <div class="toggle">
-    <span>Enable Porn Blocker</span>
-    <input type="checkbox" id="pornToggle">
+  <div class="import-export-card">
+    <div class="import-export-text">
+      <h3>Import/Export</h3>
+      <p>Backup your list<br>of blocked sites</p>
+    </div>
+    <div class="import-export-btns">
+      <button id="importBtn" class="btn-io">Import</button>
+      <button id="exportBtn" class="btn-io">Export</button>
+      <input id="importFile" type="file" accept=".json" />
+    </div>
   </div>
 
-  <h3>Blocked Sites</h3>
-  <ul id="list"></ul>
+  <div class="stats-line" id="statsLine">Ads: 8 Total • 5 Blocked • 3 Not Blocked</div>
 
-  <div class="small">
-    Tip: This deletes entries from your browser history (history stored locally). It cannot remove search activity stored in your Google account on Google servers.
+  <div class="list-header">
+    <span>Blocked Sites List:</span>
+    <button id="removeAllBtn" class="btn-remove-all">Remove All</button>
   </div>
+
+  <div class="site-list" id="list"></div>
 
   <script src="popup.js"></script>
 </body>

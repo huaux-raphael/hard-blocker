@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Hard Blocker</title>
+  <style>
+    body { font-family: system-ui, Arial; width: 420px; padding: 12px; }
+    input[type="text"] { width: 240px; padding: 6px; }
+    button { padding: 6px 10px; margin-left: 6px; cursor:pointer; }
+    .row { display:flex; align-items:center; gap:8px; margin-bottom:8px; }
+    .toggle { display:flex; justify-content:space-between; align-items:center; margin:8px 0; }
+    ul { max-height:200px; overflow:auto; padding-left:12px; }
+    li { margin:6px 0; display:flex; justify-content:space-between; gap:8px; align-items:center; }
+    .small { font-size:12px; color:#666; margin-top:8px; }
+  </style>
+</head>
+<body>
+  <h2>Hard Blocker</h2>
+
+  <div class="row">
+    <input id="siteInput" placeholder="example.com or https://example.com/path" type="text" />
+    <button id="addBtn">Add</button>
+  </div>
+
+  <div class="row">
+    <button id="blockCurrent">Block current site</button>
+    <button id="exportBtn">Export list</button>
+    <button id="importBtn">Import</button>
+    <input id="importFile" type="file" accept=".json" style="display:none" />
+  </div>
+
+  <h3>Options</h3>
+
+  <div class="toggle">
+    <span>Enable History Cleaner</span>
+    <input type="checkbox" id="clearHistoryToggle">
+  </div>
+
+  <div class="toggle">
+    <span>Enable Ad Blocker</span>
+    <input type="checkbox" id="adblockToggle">
+  </div>
+
+  <div class="toggle">
+    <span>Enable Porn Blocker</span>
+    <input type="checkbox" id="pornToggle">
+  </div>
+
+  <h3>Blocked Sites</h3>
+  <ul id="list"></ul>
+
+  <div class="small">
+    Tip: This deletes entries from your browser history (history stored locally). It cannot remove search activity stored in your Google account on Google servers.
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
