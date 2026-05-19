@@ -338,201 +338,148 @@ const AD_DOMAINS = [
     "conversantmedia.com",
 
     // ── Mobile Ads ───────────────────────────────────────────────────────────
-    // InMobi
     "inmobi.com",
     "api.inmobi.com",
     "sdk.inmobi.com",
     "ads.inmobi.com",
     "cf.hb.adriver.ru",
-    // MoPub (Twitter/X mobile)
     "ads.mopub.com",
     "mopub.com",
-    // IronSource / Unity LevelPlay
     "ironsource.com",
     "outcome-ssp.supersonicads.com",
     "admob.googleapis.com",
-    // AdMob / Google Mobile
     "admob.com",
     "googleadmob.com",
     "mobile-gtm.googleapis.com",
-    // Verizon / Oath mobile
     "ads.verizonmedia.com",
     "one.yahoo.com",
-    // Chartboost
     "live.chartboost.com",
     "chartboost.com",
-    // AppLovin
     "applovin.com",
     "rt.applovin.com",
     "d2.applovin.com",
-    // Digital Turbine / Fyber
     "fyber.com",
     "inner-active.com",
     "inneractive.com",
     "digitalturbine.com",
-    // Vungle / Liftoff
     "vungle.com",
     "api.vungle.com",
     "ads.vungle.com",
-    // Moloco
     "moloco.com",
     "ad.moloco.com",
-    // Smaato
     "prebid.smaato.net",
     "smaato.net",
-    // Mintegral / Mobvista
     "mintegral.com",
     "api.mintegral.com",
     "hb.mintegral.com",
-    // Yahoo Flurry analytics/ads
     "data.flurry.com",
     "api.flurry.com",
     "flurry.com",
 
-    // ── Analytics (missing) ───────────────────────────────────────────────────
-    // Amplitude
+    // ── Analytics ─────────────────────────────────────────────────────────────
     "api.amplitude.com",
     "api2.amplitude.com",
     "amplitude.com",
-    // Heap
     "heapanalytics.com",
     "cdn.heapanalytics.com",
-    // FullStory
     "fullstory.com",
     "rs.fullstory.com",
     "edge.fullstory.com",
-    // LogRocket
     "logrocket.com",
     "r.logrocket.io",
-    // Pendo
     "app.pendo.io",
     "cdn.pendo.io",
     "data.pendo.io",
-    // Matomo / Piwik (self-hosted but common CDN endpoints)
     "cdn.matomo.cloud",
-    // Klaviyo
     "static.klaviyo.com",
     "a.klaviyo.com",
-    // Braze
     "sdk.iad-01.braze.com",
     "sdk.fra-01.braze.com",
     "sdk.iad-02.braze.com",
     "sdk.iad-03.braze.com",
     "sdk.iad-05.braze.com",
     "braze.com",
-    // Intercom tracking
     "api-iam.intercom.io",
     "widget.intercom.io",
-    // Woopra
     "www.woopra.com",
     "static.woopra.com",
 
-    // ── Audio Ads (missing) ───────────────────────────────────────────────────
-    // Spotify Ad Studio
+    // ── Audio Ads ─────────────────────────────────────────────────────────────
     "adeventtracker.spotify.com",
     "audio-ak-spotify-com.akamaized.net",
     "heads-fa.spotify.com",
-    // AdsWizz / Pandora
     "adswizz.com",
     "deliver.adswizz.com",
     "inventory.adswizz.com",
     "impressions.adswizz.com",
     "cdn.adswizz.com",
-    // Triton Digital (streaming audio)
     "tritondigital.com",
     "playerservices.streamtheworld.com",
     "cmod.tritondigital.com",
-    // iHeartMedia / Omny
     "omny.fm",
     "traffic.omny.fm",
-    // SoundCloud ads
     "promote.soundcloud.com",
 
-    // ── Cross-Site Tracking (missing) ─────────────────────────────────────────
-    // LiveRamp / IdentityLink
+    // ── Cross-Site Tracking ───────────────────────────────────────────────────
     "liveramp.com",
     "idsync.rlcdn.com",
     "rlcdn.com",
-    // ID5 identity
     "id5-sync.com",
-    // Neustar / TransUnion
     "neustar.biz",
     "tag.crsspxl.com",
-    // TradeDesk UID2
     "global.uidapi.com",
     "uid2.prod.uidapi.com",
-    // Lotame
     "ad.crwdcntrl.net",
     "crwdcntrl.net",
     "bcp.crwdcntrl.net",
-    // Zeotap
     "zeotap.com",
     "spl.zeotap.com",
-    // Permutive
     "permutive.com",
     "edge.permutive.app",
-    // OneTrust (tracking consent but also ID sync)
     "cdn.cookielaw.org",
-    // Publink / Epsilon
     "publink.com",
     "turn.com",
     "tns.turn.com",
 
-    // ── Programmatic (missing) ────────────────────────────────────────────────
-    // The Trade Desk
+    // ── Programmatic ──────────────────────────────────────────────────────────
     "thetradedesk.com",
     "insight.adsrvr.org",
     "js.adsrvr.org",
     "match.adsrvr.org",
     "adsrvr.org",
-    // DV360 / Display & Video 360
     "bid.g.doubleclick.net",
     "cm.g.doubleclick.net",
-    // Xandr/Microsoft Invest
-    "microsoft.com/ads",
     "secure.adnxs.com",
-    // Magnite (ex-SpotX)
     "prebid.magnite.com",
     "streams.magnite.com",
     "magnite.com",
-    // Freewheel (video programmatic)
     "freewheel.tv",
     "mssl.fwmrm.net",
     "fwmrm.net",
-    // SmartAdServer / Equativ
     "smartadserver.com",
     "ced.sascdn.com",
     "sascdn.com",
-    // Sovrn / VigLink
     "sovrn.com",
     "ap.lijit.com",
     "lijit.com",
-    // Undertone / Perion
     "undertone.com",
     "cdn.undertone.com",
-    // ── Kargo ─────────────────────────────────────────────────────────────────
     "krgo.com",
     "storage.krgo.com",
 
-    // ── Spotify Ads (audio) ───────────────────────────────────────────────────
-    // Ad delivery and tracking endpoints
+    // ── Spotify Ads ───────────────────────────────────────────────────────────
     "audio-ads.spotify.com",
     "audio-fa.spotify.com",
     "audio-ec.spotify.com",
     "audio2.spotify.com",
     "www.audio2.spotify.com",
-    "heads-fa.spotify.com",
     "heads-ec.spotify.com",
     "ads-fa.spotify.com",
-    "adeventtracker.spotify.com",
     "analytics.spotify.com",
     "log.spotify.com",
     "crashdump.spotify.com",
-    // Spotify audio ad CDN (serves actual mp3 ad streams)
     "audio-fa.scdn.co",
     "audio-ec.scdn.co",
-    "audio-ak-spotify-com.akamaized.net",
-    // Third-party networks Spotify routes ads through
     "media-match.com",
     "adclick.g.doubleclick.net",
     "pubads.g.doubleclick.net",
@@ -543,11 +490,10 @@ const AD_DOMAINS = [
     "s0.2mdn.net",
     "tpc.googlesyndication.com",
     "crashlytics.com",
-    // Spotify Ad Studio
     "ads.spotify.com",
     "adstudio.spotify.com",
 
-    // ── FingerprintJS (browser fingerprinting / tracking) ─────────────────────
+    // ── FingerprintJS ─────────────────────────────────────────────────────────
     "fpjscdn.net",
     "fp.jsdelivr.net",
     "fpnpmcdn.net",
@@ -569,11 +515,8 @@ const AD_DOMAINS = [
     "widgets.pinterest.com",
     "assets.pinterest.com",
     "s.pinimg.com",
-    "trk.pinterest.com",
-    "ct.pinterest.com",
-    "log.pinterest.com",
 
-    // ── CoinHive & crypto miners ───────────────────────────────────────────────
+    // ── CoinHive & crypto miners ──────────────────────────────────────────────
     "coinhive.com",
     "coin-hive.com",
     "minero.cc",
@@ -592,7 +535,7 @@ const AD_DOMAINS = [
     "2mdn.net",
     "ppoi.org",
 
-    // ── MGID (programmatic native) ────────────────────────────────────────────
+    // ── MGID ──────────────────────────────────────────────────────────────────
     "mgid.com",
     "mg.mgid.com",
     "cm.mgid.com",
@@ -601,7 +544,7 @@ const AD_DOMAINS = [
     "a.mgid.com",
     "cdn.mgid.com",
 
-    // ── Mintegral / Mobvista (additional endpoints) ───────────────────────────
+    // ── Mintegral / Mobvista (additional) ────────────────────────────────────
     "cdn-adn.rayjump.com",
     "cdn-adn-ssl.rayjump.com",
     "rayjump.com",
@@ -613,12 +556,12 @@ const AD_DOMAINS = [
     "us-api.mintegral.com",
     "adn.mintegral.com",
 
-    // ── Google Analytics 4 (GA4) ──────────────────────────────────────────────
+    // ── Google Analytics 4 ────────────────────────────────────────────────────
     "region1.google-analytics.com",
     "region1.analytics.google.com",
     "www.google-analytics.com",
 
-    // ── Google Tag Manager (GTM) ──────────────────────────────────────────────
+    // ── Google Tag Manager ────────────────────────────────────────────────────
     "googletagmanager.com",
     "www.googletagmanager.com",
     "googletagservices.com",
@@ -626,63 +569,24 @@ const AD_DOMAINS = [
 ];
 
 function buildAndApplyRules() {
-    chrome.storage.local.get({ blocked: [], adblock: false, pornEnabled: false }, res => {
-        const blocked = res.blocked || [];
-        const adblock = !!res.adblock;
-        const pornEnabled = !!res.pornEnabled;
+    chrome.storage.local.get(
+        { blocked: [], adblock: false, pornEnabled: false, blockCurrentEnabled: true },
+        res => {
+            const adblock             = !!res.adblock;
+            const pornEnabled         = !!res.pornEnabled;
+            const blockCurrentEnabled = res.blockCurrentEnabled !== false; // default true
+            const blocked             = blockCurrentEnabled ? (res.blocked || []) : [];
 
-        const rules = [];
+            const rules = [];
 
-        for (let i = 0; i < blocked.length && i < 999; i++) {
-            rules.push({
-                id: i + 1,
-                priority: 1,
-                action: { type: "block" },
-                condition: {
-                    urlFilter: "||" + blocked[i] + "^",
-                    resourceTypes: [
-                        "main_frame",
-                        "sub_frame",
-                        "script",
-                        "image",
-                        "xmlhttprequest",
-                        "media",
-                        "websocket"
-                    ]
-                }
-            });
-        }
-
-        if (adblock) {
-            for (let i = 0; i < AD_DOMAINS.length && i < 1000; i++) {
+            // ── User's manually blocked sites (only when toggle is ON) ────────
+            for (let i = 0; i < blocked.length && i < 999; i++) {
                 rules.push({
-                    id: 1000 + i,
+                    id: i + 1,
                     priority: 1,
                     action: { type: "block" },
                     condition: {
-                        urlFilter: "||" + AD_DOMAINS[i] + "^",
-                        resourceTypes: [
-                            "script",
-                            "image",
-                            "xmlhttprequest",
-                            "sub_frame",
-                            "media",
-                            "websocket",
-                            "ping"
-                        ]
-                    }
-                });
-            }
-        }
-
-        if (pornEnabled) {
-            for (let i = 0; i < PORN_DOMAINS.length; i++) {
-                rules.push({
-                    id: 2000 + i,
-                    priority: 1,
-                    action: { type: "block" },
-                    condition: {
-                        urlFilter: "||" + PORN_DOMAINS[i] + "^",
+                        urlFilter: "||" + blocked[i] + "^",
                         resourceTypes: [
                             "main_frame",
                             "sub_frame",
@@ -695,20 +599,66 @@ function buildAndApplyRules() {
                     }
                 });
             }
-        }
 
-        chrome.declarativeNetRequest.getDynamicRules(existing => {
-            const existingIds = existing.map(r => r.id);
-            chrome.declarativeNetRequest.updateDynamicRules({
-                removeRuleIds: existingIds,
-                addRules: rules
-            }, () => {
-                if (chrome.runtime.lastError) {
-                    console.warn("updateDynamicRules failed:", chrome.runtime.lastError);
+            // ── Ad blocker ────────────────────────────────────────────────────
+            if (adblock) {
+                for (let i = 0; i < AD_DOMAINS.length && i < 1000; i++) {
+                    rules.push({
+                        id: 1000 + i,
+                        priority: 1,
+                        action: { type: "block" },
+                        condition: {
+                            urlFilter: "||" + AD_DOMAINS[i] + "^",
+                            resourceTypes: [
+                                "script",
+                                "image",
+                                "xmlhttprequest",
+                                "sub_frame",
+                                "media",
+                                "websocket",
+                                "ping"
+                            ]
+                        }
+                    });
                 }
+            }
+
+            // ── Porn blocker ──────────────────────────────────────────────────
+            if (pornEnabled) {
+                for (let i = 0; i < PORN_DOMAINS.length; i++) {
+                    rules.push({
+                        id: 2000 + i,
+                        priority: 1,
+                        action: { type: "block" },
+                        condition: {
+                            urlFilter: "||" + PORN_DOMAINS[i] + "^",
+                            resourceTypes: [
+                                "main_frame",
+                                "sub_frame",
+                                "script",
+                                "image",
+                                "xmlhttprequest",
+                                "media",
+                                "websocket"
+                            ]
+                        }
+                    });
+                }
+            }
+
+            chrome.declarativeNetRequest.getDynamicRules(existing => {
+                const existingIds = existing.map(r => r.id);
+                chrome.declarativeNetRequest.updateDynamicRules({
+                    removeRuleIds: existingIds,
+                    addRules: rules
+                }, () => {
+                    if (chrome.runtime.lastError) {
+                        console.warn("updateDynamicRules failed:", chrome.runtime.lastError);
+                    }
+                });
             });
-        });
-    });
+        }
+    );
 }
 
 chrome.runtime.onInstalled.addListener(() => {
@@ -721,7 +671,12 @@ chrome.runtime.onStartup.addListener(() => {
 });
 
 chrome.storage.onChanged.addListener((changes, area) => {
-    if (area === "local" && (changes.blocked || changes.adblock || changes.pornEnabled)) {
+    if (area === "local" && (
+        changes.blocked ||
+        changes.adblock ||
+        changes.pornEnabled ||
+        changes.blockCurrentEnabled  // ← now reacts to the toggle too
+    )) {
         buildAndApplyRules();
     }
 });

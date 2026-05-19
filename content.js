@@ -137,17 +137,19 @@ function loadAndApplyCosmetic(adblockEnabled) {
         .catch(err => console.error("Hard Blocker: failed to load cosmetic_filters.json", err));
 }
 
-chrome.storage.local.get({ blocked: [], adblock: false }, res => {
-    blockedList = res.blocked || [];
+chrome.storage.local.get({ blocked: [], adblock: false, blockCurrentEnabled: true }, res => {
+    blockedList = res.blockCurrentEnabled !== false ? (res.blocked || []) : [];
     checkBlocking();
     loadAndApplyCosmetic(!!res.adblock);
 });
 
 chrome.storage.onChanged.addListener((changes, area) => {
     if (area !== "local") return;
-    if (changes.blocked) {
-        blockedList = changes.blocked.newValue || [];
+    if (changes.blocked || changes.blockCurrentEnabled) {
+    chrome.storage.local.get({ blocked: [], blockCurrentEnabled: true }, res => {
+        blockedList = res.blockCurrentEnabled !== false ? (res.blocked || []) : [];
         checkBlocking();
+      });
     }
     if (changes.adblock) {
         loadAndApplyCosmetic(!!changes.adblock.newValue);
