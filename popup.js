@@ -73,7 +73,6 @@ function refreshUI() {
             }
         }
 
-        // Set toggles without triggering transition (no-transition class already active on first load)
         clearHistoryToggle.checked = !!res.clearHistory;
         adblockToggle.checked = !!res.adblock;
         pornToggle.checked = !!res.pornEnabled;
@@ -123,7 +122,6 @@ function onRemoveDomain(e) {
     });
 }
 
-// Block current site toggle persistence
 const blockCurrentToggle = document.getElementById("blockCurrentToggle");
 blockCurrentToggle.addEventListener("change", function() {
     chrome.storage.local.set({ blockCurrentEnabled: this.checked });
@@ -237,7 +235,6 @@ importFile.addEventListener("change", e => {
     reader.readAsText(f);
 });
 
-// ── Initialise: disable transitions, restore all toggle states, then re-enable ──
 document.body.classList.add("no-transition");
 
 chrome.storage.local.get(
@@ -246,9 +243,8 @@ chrome.storage.local.get(
         clearHistoryToggle.checked  = !!res.clearHistory;
         adblockToggle.checked       = !!res.adblock;
         pornToggle.checked          = !!res.pornEnabled;
-        blockCurrentToggle.checked  = res.blockCurrentEnabled !== false; // default true
+        blockCurrentToggle.checked  = res.blockCurrentEnabled !== false;
 
-        // Re-enable transitions after browser has painted the restored state
         requestAnimationFrame(() => {
             requestAnimationFrame(() => {
                 document.body.classList.remove("no-transition");
