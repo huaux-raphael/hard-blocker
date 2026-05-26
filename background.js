@@ -337,7 +337,7 @@ const AD_DOMAINS = [
     "media.conversantmedia.com",
     "conversantmedia.com",
 
-    // ── Mobile Ads ───────────────────────────────────────────────────────────
+    // ── Mobile Ads ────────────────────────────────────────────────────────────
     "inmobi.com",
     "api.inmobi.com",
     "sdk.inmobi.com",
@@ -504,19 +504,19 @@ const AD_DOMAINS = [
     "cdn.fingerprint.com",
     "metrics.fingerprint.com",
 
-    // ── Twitter/X Widgets & tracking ─────────────────────────────────────────
+    // ── Twitter/X Widgets & tracking ──────────────────────────────────────────
     "platform.twitter.com",
     "syndication.twitter.com",
     "widgets.twitter.com",
     "cdn.syndication.twimg.com",
     "t.co",
 
-    // ── Pinterest tracking & widgets ──────────────────────────────────────────
+    // ── Pinterest tracking & widgets ───────────────────────────────────────────
     "widgets.pinterest.com",
     "assets.pinterest.com",
     "s.pinimg.com",
 
-    // ── CoinHive & crypto miners ──────────────────────────────────────────────
+    // ── CoinHive & crypto miners ───────────────────────────────────────────────
     "coinhive.com",
     "coin-hive.com",
     "minero.cc",
@@ -544,7 +544,7 @@ const AD_DOMAINS = [
     "a.mgid.com",
     "cdn.mgid.com",
 
-    // ── Mintegral / Mobvista (additional) ────────────────────────────────────
+    // ── Mintegral / Mobvista (additional) ─────────────────────────────────────
     "cdn-adn.rayjump.com",
     "cdn-adn-ssl.rayjump.com",
     "rayjump.com",
@@ -561,11 +561,6 @@ const AD_DOMAINS = [
     "region1.analytics.google.com",
     "www.google-analytics.com",
 
-    // ── Google Tag Manager ────────────────────────────────────────────────────
-    "googletagmanager.com",
-    "www.googletagmanager.com",
-    "googletagservices.com",
-    "www.googletagservices.com",
 ];
 
 function buildAndApplyRules() {
@@ -574,12 +569,11 @@ function buildAndApplyRules() {
         res => {
             const adblock             = !!res.adblock;
             const pornEnabled         = !!res.pornEnabled;
-            const blockCurrentEnabled = res.blockCurrentEnabled !== false; // default true
+            const blockCurrentEnabled = res.blockCurrentEnabled !== false;
             const blocked             = blockCurrentEnabled ? (res.blocked || []) : [];
 
             const rules = [];
 
-            // ── User's manually blocked sites (only when toggle is ON) ────────
             for (let i = 0; i < blocked.length && i < 999; i++) {
                 rules.push({
                     id: i + 1,
@@ -600,7 +594,6 @@ function buildAndApplyRules() {
                 });
             }
 
-            // ── Ad blocker ────────────────────────────────────────────────────
             if (adblock) {
                 for (let i = 0; i < AD_DOMAINS.length && i < 1000; i++) {
                     rules.push({
@@ -623,7 +616,6 @@ function buildAndApplyRules() {
                 }
             }
 
-            // ── Porn blocker ──────────────────────────────────────────────────
             if (pornEnabled) {
                 for (let i = 0; i < PORN_DOMAINS.length; i++) {
                     rules.push({
@@ -675,8 +667,8 @@ chrome.storage.onChanged.addListener((changes, area) => {
         changes.blocked ||
         changes.adblock ||
         changes.pornEnabled ||
-        changes.blockCurrentEnabled  // ← now reacts to the toggle too
+        changes.blockCurrentEnabled
     )) {
-        buildAndApplyRules();
+        loadPornList(() => buildAndApplyRules());
     }
 });
