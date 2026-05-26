@@ -1,7 +1,7 @@
 # Hard-Blocker <img src="icons/16.png" alt="Hard-Blocker Logo" width="32"/>
 
 Hard-Blocker is a browser extension focused on productivity and digital discipline by blocking distracting or unwanted websites.
-It currently blocks over 1,800 adult websites, helps reduce intrusive ads, and includes a history cleaner that automatically removes 
+It currently blocks over 2,100 adult websites, helps reduce intrusive ads, and includes a history cleaner that automatically removes 
 blocked or inappropriate websites from your browsing history.
 
 ## *Installation*
