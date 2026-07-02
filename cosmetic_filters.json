@@ -12,7 +12,6 @@
   "[class^='ad-']",
   "[class^='ads-']",
   "[class^='ad_']",
-  "[class*='-ad-']",
   "[class*='_ad_']",
   "[class$='-ad']",
   "[class$='_ad']",
