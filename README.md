@@ -29,6 +29,7 @@ blocked or inappropriate websites from your browsing history.
 ## Planned Features
 
 - Cleaner & Better Popup (Done but can be better)
+- Block Youtube Ads (without detection)
 - Fisnish history cleaner
 - Scheduled blocking
 - Firefox support
