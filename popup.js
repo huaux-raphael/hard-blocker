@@ -4,7 +4,7 @@ const blockCurrentBtn = document.getElementById("blockCurrent");
 const listEl = document.getElementById("list");
 const clearHistoryToggle = document.getElementById("clearHistoryToggle");
 const adblockToggle = document.getElementById("adblockToggle");
-const pornToggle = document.getElementById("pornToggle");
+const blockToggle = document.getElementById("blockToggle");
 const exportBtn = document.getElementById("exportBtn");
 const importBtn = document.getElementById("importBtn");
 const importFile = document.getElementById("importFile");
@@ -16,8 +16,8 @@ const P3_KEYWORDS = [
 
 let P3_DOMAINS = [];
 
-function loadPornList(callback) {
-    const url = chrome.runtime.getURL("pornlist.json");
+function loadBlockList(callback) {
+    const url = chrome.runtime.getURL("blocklist.json");
     fetch(url)
         .then(res => res.json())
         .then(list => {
@@ -25,7 +25,7 @@ function loadPornList(callback) {
             if (callback) callback();
         })
         .catch(err => {
-            console.error("Failed to load pornlist.json:", err);
+            console.error("Failed to load blocklist.json:", err);
             if (callback) callback();
         });
 }
@@ -50,7 +50,7 @@ function extractDomain(input) {
 }
 
 function refreshUI() {
-    chrome.storage.local.get({ blocked: [], clearHistory: false, adblock: false, pornEnabled: false }, res => {
+    chrome.storage.local.get({ blocked: [], clearHistory: false, adblock: false, blockEnabled: false }, res => {
         listEl.innerHTML = "";
         const list = res.blocked || [];
         if (!list.length) {
@@ -75,7 +75,7 @@ function refreshUI() {
 
         clearHistoryToggle.checked = !!res.clearHistory;
         adblockToggle.checked = !!res.adblock;
-        pornToggle.checked = !!res.pornEnabled;
+        blockToggle.checked = !!res.blockEnabled;
     });
 }
 
@@ -109,7 +109,7 @@ function clearHistoryByKeywords(keywords) {
     });
 }
 
-function clearPornHistory() {
+function clearHistory() {
     for (const d of P3_DOMAINS) clearHistoryForDomain(d);
     clearHistoryByKeywords(P3_KEYWORDS);
 }
@@ -170,8 +170,8 @@ blockCurrentBtn.addEventListener("click", () => {
 clearHistoryToggle.addEventListener("change", e => {
     chrome.storage.local.set({ clearHistory: e.target.checked }, () => {
         if (e.target.checked) {
-            chrome.storage.local.get({ pornEnabled: false }, res => {
-                if (res.pornEnabled) clearPornHistory();
+            chrome.storage.local.get({ blockEnabled: false }, res => {
+                if (res.blockEnabled) clearHistory();
             });
         }
     });
@@ -181,11 +181,11 @@ adblockToggle.addEventListener("change", e => {
     chrome.storage.local.set({ adblock: e.target.checked });
 });
 
-pornToggle.addEventListener("change", e => {
-    chrome.storage.local.set({ pornEnabled: e.target.checked }, () => {
+blockToggle.addEventListener("change", e => {
+    chrome.storage.local.set({ blockEnabled: e.target.checked }, () => {
         if (e.target.checked) {
             chrome.storage.local.get({ clearHistory: false }, res => {
-                if (res.clearHistory) clearPornHistory();
+                if (res.clearHistory) clearHistory();
             });
         }
     });
@@ -199,7 +199,7 @@ removeAllBtn.addEventListener("click", () => {
 
 exportBtn.addEventListener("click", async () => {
     const data = await new Promise(res =>
-        chrome.storage.local.get({ blocked: [], adblock: false, clearHistory: false, pornEnabled: false }, res)
+        chrome.storage.local.get({ blocked: [], adblock: false, clearHistory: false, blockEnabled: false }, res)
     );
     const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
     const url = URL.createObjectURL(blob);
@@ -223,8 +223,8 @@ importFile.addEventListener("change", e => {
                 : [];
             const adblock = !!obj.adblock;
             const clearHistory = !!obj.clearHistory;
-            const pornEnabled = !!obj.pornEnabled;
-            chrome.storage.local.set({ blocked, adblock, clearHistory, pornEnabled }, () => {
+            const blockEnabled = !!obj.blockEnabled;
+            chrome.storage.local.set({ blocked, adblock, clearHistory, blockEnabled }, () => {
                 refreshUI();
                 alert("Imported successfully.");
             });
@@ -238,11 +238,11 @@ importFile.addEventListener("change", e => {
 document.body.classList.add("no-transition");
 
 chrome.storage.local.get(
-    { blocked: [], clearHistory: false, adblock: false, pornEnabled: false, blockCurrentEnabled: true },
+    { blocked: [], clearHistory: false, adblock: false, blockEnabled: false, blockCurrentEnabled: true },
     res => {
         clearHistoryToggle.checked  = !!res.clearHistory;
         adblockToggle.checked       = !!res.adblock;
-        pornToggle.checked          = !!res.pornEnabled;
+        blockToggle.checked          = !!res.blockEnabled;
         blockCurrentToggle.checked  = res.blockCurrentEnabled !== false;
 
         requestAnimationFrame(() => {
@@ -253,4 +253,4 @@ chrome.storage.local.get(
     }
 );
 
-loadPornList(() => refreshUI());
+loadBlockList(() => refreshUI());

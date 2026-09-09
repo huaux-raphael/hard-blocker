@@ -1,22 +1,22 @@
-let PORN_DOMAINS = [];
-let pornListLoaded = false;
+let ADULT_DOMAINS = [];
+let blockListLoaded = false;
 
-function loadPornList(callback) {
-    if (pornListLoaded) {
+function loadBlockList(callback) {
+    if (blockListLoaded) {
         if (callback) callback();
         return;
     }
-    const url = chrome.runtime.getURL("pornlist.json");
+    const url = chrome.runtime.getURL("blocklist.json");
     fetch(url)
         .then(res => res.json())
         .then(list => {
-            PORN_DOMAINS = list || [];
-            pornListLoaded = true;
-            console.log("Porn list loaded:", PORN_DOMAINS.length, "domains");
+            ADULT_DOMAINS = list || [];
+            blockListLoaded = true;
+            console.log("Block list loaded:", ADULT_DOMAINS.length, "domains");
             if (callback) callback();
         })
         .catch(err => {
-            console.error("Failed to load pornlist.json:", err);
+            console.error("Failed to load blocklist.json:", err);
             if (callback) callback();
         });
 }
@@ -565,10 +565,10 @@ const AD_DOMAINS = [
 
 function buildAndApplyRules() {
     chrome.storage.local.get(
-        { blocked: [], adblock: false, pornEnabled: false, blockCurrentEnabled: true },
+        { blocked: [], adblock: false, blockEnabled: false, blockCurrentEnabled: true },
         res => {
             const adblock             = !!res.adblock;
-            const pornEnabled         = !!res.pornEnabled;
+            const blockEnabled         = !!res.blockEnabled;
             const blockCurrentEnabled = res.blockCurrentEnabled !== false;
             const blocked             = blockCurrentEnabled ? (res.blocked || []) : [];
 
@@ -616,14 +616,14 @@ function buildAndApplyRules() {
                 }
             }
 
-            if (pornEnabled) {
-                for (let i = 0; i < PORN_DOMAINS.length; i++) {
+            if (blockEnabled) {
+                for (let i = 0; i < ADULT_DOMAINS.length; i++) {
                     rules.push({
                         id: 2000 + i,
                         priority: 1,
                         action: { type: "block" },
                         condition: {
-                            urlFilter: "||" + PORN_DOMAINS[i] + "^",
+                            urlFilter: "||" + ADULT_DOMAINS[i] + "^",
                             resourceTypes: [
                                 "main_frame",
                                 "sub_frame",
@@ -654,21 +654,21 @@ function buildAndApplyRules() {
 }
 
 chrome.runtime.onInstalled.addListener(() => {
-    loadPornList(() => buildAndApplyRules());
+    loadBlockList(() => buildAndApplyRules());
 });
 
 chrome.runtime.onStartup.addListener(() => {
-    pornListLoaded = false;
-    loadPornList(() => buildAndApplyRules());
+    blockListLoaded = false;
+    loadBlockList(() => buildAndApplyRules());
 });
 
 chrome.storage.onChanged.addListener((changes, area) => {
     if (area === "local" && (
         changes.blocked ||
         changes.adblock ||
-        changes.pornEnabled ||
+        changes.blockEnabled ||
         changes.blockCurrentEnabled
     )) {
-        loadPornList(() => buildAndApplyRules());
+        loadBlockList(() => buildAndApplyRules());
     }
 });

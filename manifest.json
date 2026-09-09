@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Hard Blocker",
   "version": "1.0.2",
-  "description": "Block websites at the network level, clear history, ad blocking, cosmetic filtering, and porn blocking.",
+  "description": "Block websites at the network level, clear history, ad blocking, cosmetic filtering, and adult sites blocking.",
   "permissions": [
     "storage",
     "declarativeNetRequest",
@@ -37,7 +37,7 @@
   ],
   "web_accessible_resources": [
     {
-      "resources": ["pornlist.json", "cosmetic_filters.json"],
+      "resources": ["blocklist.json", "cosmetic_filters.json"],
       "matches": ["<all_urls>"]
     }
   ]
