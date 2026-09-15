@@ -41,8 +41,8 @@ blocked or inappropriate websites from your browsing history.
 ## Screenshots
 
 <p align="center">
-  <img src="icons/github_image3.png" alt="Hard-Blocker Popup" width="250"/>
-  <img src="icons/github_image2.png" alt="Hard-Blocker Example" width="595"/>
+  <img src="icons/github_image3.png" alt="Hard-Blocker Popup" width="240"/>
+  <img src="icons/github_image2.png" alt="Hard-Blocker Example" width="570"/>
 </p>
 
 #
