@@ -1,7 +1,7 @@
 # Hard-Blocker <img src="icons/16.png" alt="Hard-Blocker Logo" width="32"/>
 
 Hard-Blocker is a browser extension focused on productivity and digital discipline by blocking distracting or unwanted websites.
-It currently blocks over 2,100 adult websites, helps reduce intrusive ads, and includes a history cleaner that automatically removes 
+It currently blocks over 2,700 adult websites, helps reduce intrusive ads, and includes a history cleaner that automatically removes 
 blocked or inappropriate websites from your browsing history.
 
 ## *Installation*
@@ -19,18 +19,16 @@ blocked or inappropriate websites from your browsing history.
 ## Features
 
 - Website blocking
-- Custom block lists
+- Adult websites blocking
 - Ads blocking
-- History Cleaner (Still beta)
-- Simple and lightweight
-- Fast and responsive
-- Productivity-focused
+- History Cleaner (doesn't work 100% yet)
+- Import/Export feature
 
 ## Planned Features
 
-- Cleaner & Better Popup (Done but can be better)
+- Cleaner & Better Popup (again)
 - Block Youtube Ads (without detection)
-- Fisnish history cleaner
+- working history cleaner
 - Scheduled blocking
 - Firefox support
 
@@ -43,7 +41,7 @@ blocked or inappropriate websites from your browsing history.
 ## Screenshots
 
 <p align="center">
-  <img src="icons/github_image1.png" alt="Hard-Blocker Popup" width="270"/>
+  <img src="icons/github_image3.png" alt="Hard-Blocker Popup" width="270"/>
   <img src="icons/github_image2.png" alt="Hard-Blocker Example" width="535"/>
 </p>
 
